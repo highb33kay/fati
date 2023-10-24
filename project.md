@@ -2,15 +2,15 @@
 
 ## Project Setup
 
-1. [ ] Define the project concept and objectives.
-2. [ ] Choose a development stack (Node.js, Express.js, Prisma, etc.).
-3. [ ] Set up a version control system (e.g., Git) and create a repository.
-4. [ ] Create a project directory structure.
-5. [ ] Initialize your project and set up the development environment.
+1. [x] Define the project concept and objectives.
+2. [x] Choose a development stack (Node.js, Express.js, Prisma, etc.).
+3. [x] Set up a version control system (e.g., Git) and create a repository.
+4. [x] Create a project directory structure.
+5. [x] Initialize your project and set up the development environment.
 
 ## Backend Development
 
-6. [ ] Design the database schema based on project requirements.
+6. [x] Design the database schema based on project requirements.
 7. [ ] Generate the database tables using Prisma or your chosen ORM.
 8. [ ] Implement user registration and email verification.
 9. [ ] Develop user authentication and authorization functionality.
