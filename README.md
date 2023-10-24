@@ -55,6 +55,10 @@
 ## User Experience
 - Prioritize a user-friendly and intuitive user interface for a seamless email-based messaging experience.
 
+## Database Schema
+![Fati](https://github.com/highb33kay/fati/assets/89009222/d2871d5d-62b9-491d-8a4f-461bbec0aebf)
+
+
 ## Testing and Deployment
 - Conduct rigorous testing to ensure email delivery reliability and a smooth user experience.
 - Deploy the application on a reliable hosting platform.
