@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  username      String
+  email         String         @unique
+  password      String
+  isVerified    Boolean        @default(false)
+  profileImage  String // URL to user's profile picture
+  privacy       Privacy[]
+  notifications Notification[]
+  Message       Message[]
+  Session       Session[]
+  Token         Token[]
+}
+
+model Message {
+  id              Int         @id @default(autoincrement())
+  content         String
+  timestamp       DateTime    @default(now())
+  images          Image[]
+  anonymousSender Boolean     @default(false)
+  User            User?       @relation(fields: [userId], references: [id])
+  userId          String?
+  Sender          Sender[]
+  Recipient       Recipient[]
+}
+
+model Sender {
+  id         Int     @id @default(autoincrement())
+  username   String
+  email      String
+  password   String
+  isVerified Boolean @default(false)
+  Message    Message @relation(fields: [messageId], references: [id])
+  messageId  Int
+}
+
+model Recipient {
+  id         Int     @id @default(autoincrement())
+  username   String
+  email      String
+  password   String
+  isVerified Boolean @default(false)
+  Message    Message @relation(fields: [messageId], references: [id])
+  messageId  Int
+}
+
+model Image {
+  id        Int     @id @default(autoincrement())
+  url       String
+  message   Message @relation(fields: [messageId], references: [id])
+  messageId Int
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  message   String
+  timestamp DateTime @default(now())
+  userId    String
+  User      User     @relation(fields: [userId], references: [id])
+}
+
+model Privacy {
+  id            Int     @id @default(autoincrement())
+  showProfile   Boolean @default(true)
+  allowMessages Boolean @default(true)
+  userId        String
+  User          User    @relation(fields: [userId], references: [id])
+}
+
+model Session {
+  id      Int      @id @default(autoincrement())
+  sid     String
+  expires DateTime
+  data    String
+  userId  String
+  User    User     @relation(fields: [userId], references: [id])
+}
+
+model Token {
+  id           Int    @id @default(autoincrement())
+  refreshToken String
+  userId       String
+  User         User   @relation(fields: [userId], references: [id])
+}
